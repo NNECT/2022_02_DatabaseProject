@@ -1,0 +1,135 @@
+{% extends 'layout.html' %}
+
+{% block headscript %}
+    <script src="{{ url_for('static', filename='datetype_funcs.js') }}"></script>
+    <link href="{{ url_for('static', filename='bootstrap-datepicker.standalone.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <div class="modal modal-tour position-static d-block py-5" tabindex="-1" role="dialog" id="modalTour">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-body p-5">
+                    <h2 class="fw-bold mb-0">데이터 선택</h2>
+                    <form class="w-100" method="post" name="select_table" action="{{ url_for('table') }}">
+
+                        <div class="btn-group-vertical mt-5 w-100" role="group" aria-label="Basic checkbox toggle button group">
+                            <button type="button" class="btn btn-outline-primary active">지역</button>
+
+                            <input type="checkbox" class="btn-check" id="loc140" name="loc" value=140 autocomplete="off">
+                            <label class="btn btn-outline-primary" for="loc140">군산</label>
+                            <input type="checkbox" class="btn-check" id="loc146" name="loc" value=146 autocomplete="off">
+                            <label class="btn btn-outline-primary" for="loc146">전주</label>
+                            <input type="checkbox" class="btn-check" id="loc172" name="loc" value=172 autocomplete="off">
+                            <label class="btn btn-outline-primary" for="loc172">고창</label>
+                            <input type="checkbox" class="btn-check" id="loc243" name="loc" value=243 autocomplete="off">
+                            <label class="btn btn-outline-primary" for="loc243">부안</label>
+                            <input type="checkbox" class="btn-check" id="loc244" name="loc" value=244 autocomplete="off">
+                            <label class="btn btn-outline-primary" for="loc244">임실</label>
+                            <input type="checkbox" class="btn-check" id="loc245" name="loc" value=245 autocomplete="off">
+                            <label class="btn btn-outline-primary" for="loc245">정읍</label>
+                            <input type="checkbox" class="btn-check" id="loc247" name="loc" value=247 autocomplete="off">
+                            <label class="btn btn-outline-primary" for="loc247">남원</label>
+                            <input type="checkbox" class="btn-check" id="loc248" name="loc" value=248 autocomplete="off">
+                            <label class="btn btn-outline-primary" for="loc248">장수</label>
+                            <input type="checkbox" class="btn-check" id="loc251" name="loc" value=251 autocomplete="off">
+                            <label class="btn btn-outline-primary" for="loc251">고창군</label>
+                            <input type="checkbox" class="btn-check" id="loc254" name="loc" value=254 autocomplete="off">
+                            <label class="btn btn-outline-primary" for="loc254">순창군</label>
+                        </div>
+
+                        <div class="input-group mt-5 w-100">
+                            <div class="form-floating">
+                                <input id="startDate" class="form-control" type="date" name="startDate" placeholder="starting date">
+                                <label for="startDate">Start</label>
+                                <span id="startDateSelected"></span>
+                            </div>
+                            <div class="form-floating">
+                                <input id="endDate" class="form-control" type="date" name="endDate" placeholder="ending date">
+                                <label for="endDate">End</label>
+                                <span id="endDateSelected"></span>
+                            </div>
+                        </div>
+
+                        <div class="btn-group mt-5 w-100" role="group" aria-label="Basic radio toggle button group">
+                          <input type="radio" class="btn-check" name="datetype" value="year" id="btn-year" onclick="toggleDatetype(this.value)" autocomplete="off">
+                          <label class="btn btn-outline-primary" for="btn-year">연</label>
+                          <input type="radio" class="btn-check" name="datetype" value="month" id="btn-month" onclick="toggleDatetype(this.value)" autocomplete="off">
+                          <label class="btn btn-outline-primary" for="btn-month">월</label>
+                          <input type="radio" class="btn-check" name="datetype" value="day" id="btn-day" onclick="toggleDatetype(this.value)" autocomplete="off">
+                          <label class="btn btn-outline-primary" for="btn-day">일</label>
+                        </div>
+
+                        <div class="btn-group-vertical mt-5 w-100 visually-hidden" id="toggleYear" role="group" aria-label="Basic checkbox toggle button group">
+                            <button type="button" class="btn btn-outline-primary active">데이터 종류</button>
+
+                            <input type="checkbox" class="btn-check" id="year-tavg" name="dataYear" value="tavg" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="year-tavg">평균기온</label>
+                            <input type="checkbox" class="btn-check" id="year-tmin" name="dataYear" value="tmin" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="year-tmin">최저기온</label>
+                            <input type="checkbox" class="btn-check" id="year-tmax" name="dataYear" value="tmax" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="year-tmax">최고기온</label>
+                            <input type="checkbox" class="btn-check" id="year-rain_total" name="dataYear" value="rain_total" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="year-rain_total">총강수량</label>
+                            <input type="checkbox" class="btn-check" id="year-rain_max" name="dataYear" value="rain_max" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="year-rain_max">일최다강수량</label>
+                            <input type="checkbox" class="btn-check" id="year-humid_avg" name="dataYear" value="humid_avg" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="year-humid_avg">평균상대습도</label>
+                            <input type="checkbox" class="btn-check" id="year-wind_avg" name="dataYear" value="wind_avg" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="year-wind_avg">평균풍속</label>
+                            <input type="checkbox" class="btn-check" id="year-light_time" name="dataYear" value="light_time" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="year-light_time">일조율</label>
+                        </div>
+
+                        <div class="btn-group-vertical mt-5 w-100 visually-hidden" id="toggleMonth" role="group" aria-label="Basic checkbox toggle button group">
+                            <button type="button" class="btn btn-outline-primary active">데이터 종류</button>
+
+                            <input type="checkbox" class="btn-check" id="month-tavg" name="dataMonth" value="tavg" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="month-tavg">평균기온</label>
+                            <input type="checkbox" class="btn-check" id="month-tmin" name="dataMonth" value="tmin" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="month-tmin">최저기온</label>
+                            <input type="checkbox" class="btn-check" id="month-tmax" name="dataMonth" value="tmax" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="month-tmax">최대기온</label>
+                            <input type="checkbox" class="btn-check" id="month-rain_total" name="dataMonth" value="rain_total" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="month-rain_total">총강수량</label>
+                            <input type="checkbox" class="btn-check" id="month-rain_max" name="dataMonth" value="rain_max" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="month-rain_max">일최다강수량</label>
+                            <input type="checkbox" class="btn-check" id="month-humid_avg" name="dataMonth" value="humid_avg" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="month-humid_avg">평균상대습도</label>
+                            <input type="checkbox" class="btn-check" id="month-wind_avg" name="dataMonth" value="wind_avg" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="month-wind_avg">평균풍속</label>
+                            <input type="checkbox" class="btn-check" id="month-wind_max" name="dataMonth" value="wind_max" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="month-wind_max">최대풍속</label>
+                            <input type="checkbox" class="btn-check" id="month-light_time" name="dataMonth" value="light_time" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="month-light_time">일조율</label>
+                        </div>
+
+                        <div class="btn-group-vertical mt-5 w-100 visually-hidden" id="toggleDay" role="group" aria-label="Basic checkbox toggle button group">
+                            <button type="button" class="btn btn-outline-primary active">데이터 종류</button>
+
+                            <input type="checkbox" class="btn-check" id="day-tavg" name="dataDay" value="tavg" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="day-tavg">평균기온</label>
+                            <input type="checkbox" class="btn-check" id="day-tmin" name="dataDay" value="tmin" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="day-tmin">최저기온</label>
+                            <input type="checkbox" class="btn-check" id="day-tmax" name="dataDay" value="tmax" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="day-tmax">최대기온</label>
+                            <input type="checkbox" class="btn-check" id="day-rain" name="dataDay" value="rain" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="day-rain">일강수량</label>
+                            <input type="checkbox" class="btn-check" id="day-humid_avg" name="dataDay" value="humid_avg" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="day-humid_avg">평균습도</label>
+                            <input type="checkbox" class="btn-check" id="day-wind_avg" name="dataDay" value="wind_avg" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="day-wind_avg">평균풍속</label>
+                            <input type="checkbox" class="btn-check" id="day-wind_max" name="dataDay" value="wind_max" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="day-wind_max">최대풍속</label>
+                            <input type="checkbox" class="btn-check" id="day-light_time" name="dataDay" value="light_time" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="day-light_time">일조시간</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-primary mt-5 w-100">테이블 생성</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

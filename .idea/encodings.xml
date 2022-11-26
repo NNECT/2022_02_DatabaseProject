@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/climate_data/OBS_ASOS_ANL_20221115205709.csv" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/climate_data/OBS_ASOS_ANL_20221115205709.csv" charset="UTF-8" />
   </component>
 </project>

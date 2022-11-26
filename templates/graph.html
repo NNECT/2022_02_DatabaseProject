@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block headscript %}
+    <script src="{{ url_for('static', filename='download_graph.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <ul class="container-sm list-group mt-5">
+        <li class="list-group-item">GRAPH</li>
+        <li class="list-group-item">
+            <canvas id="lineChart"></canvas>
+        </li>
+        <button type="button" class="list-group-item list-group-item-action" onclick="download_graph()">Download</button>
+    </ul>
+{% endblock %}
+
+{% block otherscript %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById("lineChart").getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{ date|tojson }},
+                datasets: {{ df|tojson }}
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
+{% endblock %}
