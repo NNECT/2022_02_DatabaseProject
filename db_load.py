@@ -6,12 +6,14 @@ from models import *
 
 def db_load(select: list, location: list | int | str = None, datetype: int | str = None, start_date: str | datetime = None, end_date: str | datetime = None):
     '''
+    데이터베이스에서 데이터를 불러오는 함수
+    데이터프레임의 형식으로 반환
 
-    :param select:
-    :param datetype:
-    :param location:
-    :param start_date:
-    :param end_date:
+    :param select: <리스트> 반환할 데이터의 종류
+    :param location: <리스트/숫자/문자열> 반환할 데이터 지역. 기본적으로 location_id의 리스트를 입력해야 하지만, 문자열로 입력해도 자동으로 변환됨.
+    :param datetype: <숫자/문자열> 반환할 데이터의 날짜 단위. 연간/월간/일간.
+    :param start_date: <문자열/datetime> 반환할 데이터의 시작 날짜.
+    :param end_date: <문자열/datetime> 반환할 데이터의 종료 날짜.
     :return:
     '''
 
