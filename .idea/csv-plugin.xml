@@ -3,13 +3,6 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="C:\Users\wingg\Downloads\OBS_ASOS_DD_20221127060623.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\climate_data\old\OBS_ASOS_ANL_20221115205709.csv">
           <value>
             <Attribute>
