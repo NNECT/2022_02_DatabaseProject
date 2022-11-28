@@ -100,15 +100,61 @@ def graph():
                      datetime.strptime(start_date, "%Y-%m-%d"),
                      datetime.strptime(end_date, "%Y-%m-%d"))
         df_dict = df.iloc[:, 2:].to_dict('list')
+        if 'tmin' in data and 'tmax' in data:
+            chk = 1
+            if 'tavg' in data:
+                chk = 2
+        else:
+            chk = False
         data = []
         for key in df_dict:
-            data.append(
-                {
-                    'label': key,
-                    'data': df_dict[key],
-                    'borderWidth': 2
-                }
-            )
+            if key == '최저기온':
+                if chk == 2:
+                    data.append(
+                        {
+                            'label': key,
+                            'data': df_dict[key],
+                            'borderWidth': 2,
+                            # 'backgroundColor': 'Utils.transparentize(Utils.CHART_COLORS.orange)',
+                            'fill': '-1'
+                        }
+                    )
+                elif chk == 1:
+                    data.append(
+                        {
+                            'label': key,
+                            'data': df_dict[key],
+                            'borderWidth': 2,
+                            # 'backgroundColor': 'Utils.transparentize(Utils.CHART_COLORS.orange)',
+                            'fill': '+1'
+                        }
+                    )
+                else:
+                    data.append(
+                        {
+                            'label': key,
+                            'data': df_dict[key],
+                            'borderWidth': 2
+                        }
+                    )
+            elif key == '최고기온' and chk == 2:
+                data.append(
+                    {
+                        'label': key,
+                        'data': df_dict[key],
+                        'borderWidth': 2,
+                        # 'backgroundColor': 'Utils.transparentize(Utils.CHART_COLORS.blue)',
+                        'fill': '-2'
+                    }
+                )
+            else:
+                data.append(
+                    {
+                        'label': key,
+                        'data': df_dict[key],
+                        'borderWidth': 2
+                    }
+                )
         return render_template('graph.html', date=list(df.iloc[:, 1]), df=data)
 
     elif graphtype == '0' or graphtype == 0:

@@ -1,5 +1,9 @@
 {% extends 'layout.html' %}
 
+{% block headscript %}
+    <script src="{{ url_for('static', filename='download_table.js') }}"></script>
+{% endblock %}
+
 {% block content %}
     <ul class="container-sm list-group mt-5">
         <li class="list-group-item">TABLE</li>
@@ -25,5 +29,6 @@
                 </tbody>
             </table>
         </li>
+        <button type="button" class="list-group-item list-group-item-action" onclick="tableToCSV()">CSV로 다운로드</button>
     </ul>
 {% endblock %}
