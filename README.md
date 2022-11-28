@@ -89,7 +89,7 @@
   - graph.html
     > 그래프 페이지<br> 데이터를 그래프 형태로 출력한다.<br> 해당 그래프를 이미지로 저장할 수 있다.
 - static
-  - datetype_func.js
+  - selection_func.js
     > 선택 페이지에서 연간/월간/일간에 따라 다른 데이터 종류를 선택할 수 있도록 하는 자바스크립트 함수
   - download_table.js
     > 테이블 페이지에서 테이블을 CSV파일로 저장하도록 하는 자바스크립트 함수

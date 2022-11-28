@@ -1,8 +1,8 @@
 {% extends 'layout.html' %}
 
 {% block headscript %}
-    <script src="{{ url_for('static', filename='datetype_funcs.js') }}"></script>
-    <link href="{{ url_for('static', filename='bootstrap-datepicker.standalone.css') }}" rel="stylesheet" type="text/css">
+    <script src="{{ url_for('static', filename='selection_funcs.js') }}"></script>
+{#    <link href="{{ url_for('static', filename='bootstrap-datepicker.standalone.css') }}" rel="stylesheet" type="text/css">#}
 {% endblock %}
 
 {% block content %}
@@ -59,12 +59,12 @@
                         </div>
 
                         <div class="btn-group mt-5 w-100" role="group" aria-label="Basic radio toggle button group">
-                          <input type="radio" class="btn-check" name="datetype" value="year" id="btn-year" onclick="toggleDatetype(this.value)" autocomplete="off">
-                          <label class="btn btn-outline-primary" for="btn-year">연</label>
-                          <input type="radio" class="btn-check" name="datetype" value="month" id="btn-month" onclick="toggleDatetype(this.value)" autocomplete="off">
-                          <label class="btn btn-outline-primary" for="btn-month">월</label>
-                          <input type="radio" class="btn-check" name="datetype" value="day" id="btn-day" onclick="toggleDatetype(this.value)" autocomplete="off">
-                          <label class="btn btn-outline-primary" for="btn-day">일</label>
+                            <input type="radio" class="btn-check" name="datetype" value="year" id="btn-year" onclick="toggleDatetype(this.value)" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btn-year">연</label>
+                            <input type="radio" class="btn-check" name="datetype" value="month" id="btn-month" onclick="toggleDatetype(this.value)" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btn-month">월</label>
+                            <input type="radio" class="btn-check" name="datetype" value="day" id="btn-day" onclick="toggleDatetype(this.value)" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btn-day">일</label>
                         </div>
 
                         <div class="btn-group-vertical mt-5 w-100 visually-hidden" id="toggleYear" role="group" aria-label="Basic checkbox toggle button group">
@@ -132,7 +132,7 @@
                             <label class="btn btn-outline-primary" for="day-light_time">일조시간</label>
                         </div>
 
-                        <button type="submit" class="btn btn-outline-primary mt-5 w-100">그래프 생성</button>
+                        <button id="submitButton" type="submit" class="btn btn-outline-primary mt-5 w-100">그래프 생성</button>
                     </form>
 
                 </div>
