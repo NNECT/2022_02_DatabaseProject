@@ -1,14 +1,27 @@
-# 2022년 2학기 데이터베이스 프로젝트
+기후데이터 시작화 웹 어플리케이션
+===
+2022년 2학기 데이터베이스 프로젝트
 
-## 개발환경
+## 1. 개발환경
 - Python (3.9)
 - Flask (2.1.3)
 - Bootstrap (5.2.2)
 
-## 개발목표
+## 2. 개발목표
 - 필요한 정보를 입력받고, 해당 정보에 맞는 데이터를 테이블 또는 그래프로 출력한다.
+  - 기후 데이터를 입력받아 데이터베이스를 구축한다.
+  - 데이터베이스 업데이트의 편의성을 추구한다.
+  - 원하는 데이터를 선택하여 테이블 또는 그래프로 출력받고, 결과물을 다운로드 받을 수 있도록 한다.
 
-## 데이터베이스
+## 프로젝트 구성
+- 프레젠테이션 [링크](https://docs.google.com/presentation/d/e/2PACX-1vTjri26MZu_JHAn6jReJZtX3LAD6IERa0nxameleXvdLV7qqpQnlrmtkD6IvRnzpA/pub?start=false&loop=false&delayms=10000)
+
+### 3.1. 기능 구현
+- 지정 폴더에 저장된 CSV 파일을 읽고 데이터베이스 업데이트 (기상자료개방포털에서 다운로드한 CSV 파일)
+- 사용자가 원하는 날짜, 지역, 데이터 종류에 따라 테이블 또는 그래프 형태로 출력
+- 출력된 테이블 / 그래프를 CSV / PNG 파일 형태로 다운로드
+
+### 3.2. 데이터베이스
 - location
   >- <u>location_id</u>: Integer
   >- location_name: String(10)
@@ -47,7 +60,7 @@
   >- wind_max: Float
   >- light_time: Float
 
-## 프로젝트구성
+### 3.3. 파일 구성
 - climate_visualization.py
   > 프로젝트의 메인 파일<br>
   > url에 따른 처리 함수가 들어있다.<br>
