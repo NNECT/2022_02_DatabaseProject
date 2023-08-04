@@ -13,7 +13,7 @@
   - 데이터베이스 업데이트의 편의성을 추구한다.
   - 원하는 데이터를 선택하여 테이블 또는 그래프로 출력받고, 결과물을 다운로드 받을 수 있도록 한다.
 
-## 프로젝트 구성
+## 3. 프로젝트 구성
 - 프레젠테이션 [링크](https://docs.google.com/presentation/d/e/2PACX-1vTjri26MZu_JHAn6jReJZtX3LAD6IERa0nxameleXvdLV7qqpQnlrmtkD6IvRnzpA/pub?start=false&loop=false&delayms=10000)
 
 ### 3.1. 기능 구현
